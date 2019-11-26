@@ -1,6 +1,5 @@
-var show_strength, range, strength = 6;
+var show_strength, range, checkbox, strength = 6;
 var password = '';
-var checkbox, upper, lower, num, sym;
 
 // set of variables
 var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -13,10 +12,25 @@ window.onload = function () {
     range = document.getElementById('myRange');
     show_strength = document.getElementById('slide-value');
     checkbox = document.getElementsByClassName('checkbox');
-    upper = checkbox[0];
-    lower = checkbox[1];
-    num = checkbox[2];
-    sym = checkbox[3];
+    for (let i = 0; i < checkbox.length; i++) {
+        checkbox[i].addEventListener('click',
+            function check_boxes() {
+                let count = 0;
+                // show_msg(this.checked);
+                if (!this.checked) {
+                    for (let i = 0; i < checkbox.length; i++) {
+                        if (checkbox[i] != this && !checkbox[i].disabled && checkbox[i].checked) {
+                            count++;
+                        }
+                    }
+
+                }
+                if (count == 0) {
+                    this.checked = true;
+                }
+                generate();
+            });
+    }
     generate();
 }
 function set_strength_s() {
@@ -44,32 +58,26 @@ function generate() {
     //making the main set
     main_set = '';
     password = '';
-    if (upper.checked) {
+    if (checkbox[0].checked) {
         main_set += alpha;
     }
-    if (lower.checked) {
+    if (checkbox[1].checked) {
         main_set += lo;
     }
-    if (num.checked) {
+    if (checkbox[2].checked) {
         main_set += num_list;
     }
-    if (sym.checked) {
+    if (checkbox[3].checked) {
         main_set += sym_list;
     }
 
-    // console.log(main_set);
-    if (main_set.trim().length > 0) {
-
-
-        for (let i = 0; i < strength; i++) {
-            let ran = Math.floor(Math.random() * (main_set.length - 1));
-            password += main_set[ran];
-        }
-
-        document.getElementsByClassName('viewer')[0].value = password;
-    } else {
-        show_msg('Check some parameters first');
+    for (let i = 0; i < strength; i++) {
+        let ran = Math.floor(Math.random() * (main_set.length - 1));
+        password += main_set[ran];
     }
+
+    document.getElementsByClassName('viewer')[0].value = password;
+
 }
 
 function strength_indicator() {
@@ -130,22 +138,30 @@ function show_msg(msg, color = 'black') {
 function set_type() {
     let pre_set = document.querySelector('input[name="pswd_type"]:checked');
     if (pre_set.value == 'a') {
-        num.checked = false;
-        num.disabled = true;
-        num.style.cursor = 'initial';
-        sym.checked = false;
-        sym.disabled = true;
-        sym.style.cursor = 'initial';
+        checkbox[0].checked = true;
+        checkbox[1].checked = true;
+        checkbox[2].checked = false;
+        checkbox[2].disabled = true;
+        checkbox[2].style.cursor = 'initial';
+        checkbox[3].checked = false;
+        checkbox[3].disabled = true;
+        checkbox[3].style.cursor = 'initial';
     } else if (pre_set.value == 'b') {
-        num.checked = false;
-        sym.checked = false;
+        checkbox[0].checked = true;
+        checkbox[1].checked = true;
+        checkbox[2].checked = false;
+        checkbox[3].checked = false;
+        checkbox[3].disabled = false;
+        checkbox[2].disabled = false;
     } else {
-        num.checked = true;
-        num.disabled = false;
-        num.style.cursor = 'pointer';
-        sym.checked = true;
-        sym.disabled = false;
-        sym.style.cursor = 'pointer';
+        checkbox[0].checked = true;
+        checkbox[1].checked = true;
+        checkbox[2].checked = true;
+        checkbox[2].disabled = false;
+        checkbox[2].style.cursor = 'pointer';
+        checkbox[3].checked = true;
+        checkbox[3].disabled = false;
+        checkbox[3].style.cursor = 'pointer';
     }
     generate();
 }
