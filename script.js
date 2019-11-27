@@ -1,5 +1,6 @@
-var show_strength, range, checkbox, strength = 6;
+var show_strength, range, checkbox, ht, strength = 16;
 var password = '';
+var theme = 'light';
 
 // set of variables
 var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -7,6 +8,7 @@ var lo = 'abcdefghijklmnopqrstuvwxyz';
 var num_list = '0123456789';
 var sym_list = '!@#$%^&*()-_+={[}]:;<,>.?/';
 var main_set = '';
+
 
 window.onload = function () {
     range = document.getElementById('myRange');
@@ -23,7 +25,6 @@ window.onload = function () {
                             count++;
                         }
                     }
-
                 }
                 if (count == 0) {
                     this.checked = true;
@@ -31,26 +32,8 @@ window.onload = function () {
                 generate();
             });
     }
+    set_theme();
     generate();
-}
-function set_strength_s() {
-
-    strength = range.value;
-    let val = (strength / 250) * 100;
-    range.style.background = 'linear-gradient(to right, #fb542b 0%, #fb542b ' + val + '%, gray ' + val + '%, gray 100%)'
-    show_strength.value = strength;
-
-    generate();
-    strength_indicator();
-}
-function set_strength_i() {
-    strength = show_strength.value;
-    range.value = strength;
-    let val = (strength / 250) * 100;
-    range.style.background = 'linear-gradient(to right, #fb542b 0%, #fb542b ' + val + '%, gray ' + val + '%, gray 100%)'
-
-    generate();
-    strength_indicator();
 }
 
 function generate() {
@@ -70,7 +53,8 @@ function generate() {
     if (checkbox[3].checked) {
         main_set += sym_list;
     }
-
+    //to show strength
+    strength_indicator();
     for (let i = 0; i < strength; i++) {
         let ran = Math.floor(Math.random() * (main_set.length - 1));
         password += main_set[ran];
@@ -84,25 +68,23 @@ function strength_indicator() {
     let a = document.getElementsByClassName('strength')[0];
     let b = document.getElementsByClassName('strength-indicator')[0];
 
-    if (strength <= 8 && strength > 0) {
+    if (strength < 8 && strength > 0) {
         b.style.background = 'rgb(241, 155, 43)';
         a.style.background = 'rgb(241, 155, 43,.3)';
         b.style.width = '20%';
-    } else if (strength < 16 && strength > 8) {
+    } else if (strength < 16 && strength >= 8) {
         b.style.background = 'rgb(216, 209, 69)';
         a.style.background = 'rgb(216, 209, 69,.3)';
-        b.style.width = '40%';
-    } else if (strength >= 16) {
+        b.style.width = '50%';
+    } else if (strength <= 32 && strength >= 16) {
         b.style.background = 'rgb(95, 216, 137)';
         a.style.background = 'rgb(95, 216, 137,.3)';
-        if (strength >= 32 && strength < 128) {
-            b.style.width = '80%';
-        } else if (strength >= 128) {
-            b.style.width = '100%';
-        } else {
-            b.style.width = '60%';
-        }
+        b.style.width = '80%';
 
+    } else if (strength >= 64) {
+        b.style.background = 'rgb(95, 216, 137)';
+        a.style.background = 'rgb(95, 216, 137,.3)';
+        b.style.width = '100%';
     }
 
 }
@@ -163,5 +145,42 @@ function set_type() {
         checkbox[3].disabled = false;
         checkbox[3].style.cursor = 'pointer';
     }
+    generate();
+}
+
+//to set theme
+function set_theme() {
+    let ht = document.documentElement.style;
+    if (theme == 'light') {
+        ht.setProperty('--theme', 'white');
+        ht.setProperty('--color', '#202124');
+        ht.setProperty('--shadow', 'rgba(0, 0, 0, .2)');
+    }
+    if (theme == 'dark') {
+        ht.setProperty('--theme', '#202124');
+        ht.setProperty('--color', 'white');
+        ht.setProperty('--shadow', 'rgba(239, 239, 239, 0.2)');
+    }
+}
+
+//to change theme
+function change_theme() {
+    document.getElementsByClassName('theme-changer')[0].classList.toggle('night');
+    if (theme == 'light') {
+        theme = 'dark';
+        set_theme();
+    } else {
+        theme = 'light';
+        set_theme();
+    }
+}
+
+//some quick methods
+function make_sort(a) {
+    strength = a;
+    range.value = strength;
+    let val = (strength / (range.max - range.min)) * 100;
+    range.style.background = 'linear-gradient(to right, #fb542b 0%, #fb542b ' + val + '%, gray ' + val + '%, gray 100%)'
+    show_strength.value = strength;
     generate();
 }

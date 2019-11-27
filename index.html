@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Aleo|Montserrat|Muli&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aleo|MontserratMuli&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <title>Password Generator</title>
 </head>
 
 <body>
-    <h1>Password Generator</h1>
+    <div class="theme-changer" onclick='change_theme()'>
+        <span></span>
+        <label>Theme</label>
+    </div>
+    <h2>Password Generator</h2>
     <section>
         <div class="sec-holder">
             <input type="text" class="viewer" disabled>
@@ -20,7 +24,7 @@
                 <div class="copy" onclick='make_copy()'><img src="images\img-copy.png" alt="copy"><span>copy</span>
                 </div>
                 <div class="generate" onclick='generate()'><img src="images/generate.svg"
-                        alt="generate"><span>Repeat</span>
+                        alt="generate"><span>Refresh</span>
                 </div>
             </div>
         </div>
@@ -31,12 +35,20 @@
     <main>
         <h3>Customize your password</h3>
         <div class="main1">
-
-            <div class="slide">
-                <input type="number" oninput='set_strength_i()' id="slide-value" min="6" max="256" value="6">
-                <input oninput='set_strength_s()' type="range" min="6" max="256" value="6" class="slider" id="myRange">
+            <div class="slide-container">
+                <div class="slide">
+                    <input type="number" oninput='make_sort(show_strength.value)' id="slide-value" min="6" max="128"
+                        value="16">
+                    <input oninput='make_sort(range.value)' type="range" min="6" max="128" value="16" class="slider"
+                        id="myRange">
+                </div>
+                <div class="shortcuts">
+                    <div class="boxes" onclick="make_sort('8')">08</div>
+                    <div class="boxes" onclick="make_sort('16')">16</div>
+                    <div class="boxes" onclick="make_sort('32')">32</div>
+                    <div class="boxes" onclick="make_sort('64')">64</div>
+                </div>
             </div>
-
             <div class="data">
                 <div class="type">
                     <label class="container">
