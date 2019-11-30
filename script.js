@@ -1,6 +1,6 @@
 var show_strength, range, checkbox, ht, strength = 16;
 var password = '';
-var theme = 'light';
+var theme;
 
 // set of variables
 var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -31,6 +31,14 @@ window.onload = function () {
                 }
                 generate();
             });
+    }
+
+    //to set theme of the code
+    if (window.matchMedia("prefers-color-scheme:light").matches) {
+        theme = 'light';
+    } else {
+        theme = 'dark';
+        document.getElementsByClassName('theme-changer')[0].classList.add('night');
     }
     set_theme();
     generate();

@@ -12,19 +12,19 @@
 </head>
 
 <body>
-    <div class="theme-changer" onclick='change_theme()'>
-        <span></span>
-        <label>Theme</label>
+    <div class="bg"></div>
+    <div class="copy-holder">
+        <div class="copied">Copied</div>
     </div>
     <h2>Password Generator</h2>
     <section>
         <div class="sec-holder">
             <input type="text" class="viewer" disabled>
             <div class="act">
-                <div class="copy" onclick='make_copy()'><img src="images\img-copy.png" alt="copy"><span>copy</span>
+                <div class="copy" onclick='make_copy()'><img src="images\img-copy.png" alt="copy" title="Copy">
                 </div>
-                <div class="generate" onclick='generate()'><img src="images/generate.svg"
-                        alt="generate"><span>Refresh</span>
+                <div class="generate" onclick='generate()'><img src="images/generate.svg" alt="generate"
+                        title="Refresh">
                 </div>
             </div>
         </div>
@@ -36,47 +36,69 @@
         <h3>Customize your password</h3>
         <div class="main1">
             <div class="slide-container">
-                <div class="slide">
-                    <input type="number" oninput='make_sort(show_strength.value)' id="slide-value" min="6" max="128"
-                        value="16">
-                    <input oninput='make_sort(range.value)' type="range" min="6" max="128" value="16" class="slider"
-                        id="myRange">
-                </div>
-                <div class="shortcuts">
-                    <div class="boxes" onclick="make_sort('8')">08</div>
-                    <div class="boxes" onclick="make_sort('16')">16</div>
-                    <div class="boxes" onclick="make_sort('32')">32</div>
-                    <div class="boxes" onclick="make_sort('64')">64</div>
-                </div>
+                <fieldset title="Set password length">
+                    <legend>Password Length</legend>
+                    <div class="slide">
+                        <input type="number" oninput='make_sort(show_strength.value)' id="slide-value" min="6" max="128"
+                            value="16">
+                        <input oninput='make_sort(range.value)' type="range" min="6" max="128" value="16" class="slider"
+                            id="myRange">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Quick Touch</legend>
+                    <div class="shortcuts">
+                        <div class="boxes" onclick="make_sort('8')">08</div>
+                        <div class="boxes" onclick="make_sort('16')">16</div>
+                        <div class="boxes" onclick="make_sort('32')">32</div>
+                        <div class="boxes" onclick="make_sort('64')">64</div>
+                    </div>
+                </fieldset>
             </div>
-            <div class="data">
-                <div class="type">
-                    <label class="container">
-                        <input oninput='set_type()' type="radio" name="pswd_type" value="a"> Easy to say <br>
-                        <span class='checkmark'></span>
-                    </label>
-                    <label class="container">
-                        <input oninput='set_type()' type="radio" name="pswd_type" value="b"> Easy to read <br>
-                        <span class='checkmark'></span>
-                    </label>
-                    <label class="container">
-                        <input oninput='set_type()' type="radio" name="pswd_type" value="c" checked> All Characters <br>
-                        <span class='checkmark'></span>
-                    </label>
-                </div>
-                <div class="order">
+            <fieldset id="c_f" title="set conditions for your password">
+                <legend>Conditions</legend>
+                <div class="data">
+                    <div class="type">
+                        <label class="container" title="Make the password easy to say">
+                            <input oninput='set_type()' type="radio" name="pswd_type" value="a"> Easy to say <br>
+                            <span class='checkmark'></span>
+                        </label>
+                        <label class="container" title="Make the password easy to read">
+                            <input oninput='set_type()' type="radio" name="pswd_type" value="b"> Easy to read <br>
+                            <span class='checkmark'></span>
+                        </label>
+                        <label class="container" title="Include all characters">
+                            <input oninput='set_type()' type="radio" name="pswd_type" value="c" checked> All Characters
+                            <br>
+                            <span class='checkmark'></span>
+                        </label>
+                    </div>
+                    <div class="order">
 
-                    <input class='checkbox' type="checkbox" checked> Uppercase <br>
-                    <input class='checkbox' type="checkbox" checked> Lowercase <br>
-                    <input class='checkbox' type="checkbox" checked> Number <br>
-                    <input class='checkbox' type="checkbox" checked> Symbol <br>
+                        <label for="Uppercase" title="Include uppercase alphabets">
+                            <input class='checkbox' type="checkbox" id="Uppercase" checked> Uppercase
+                        </label> <br>
 
+                        <label for="lowercase" title="Include lowercase alphabets">
+                            <input id="lowercase" class='checkbox' type="checkbox" checked> Lowercase
+                        </label> <br>
+
+                        <label for="num" title="Include number in password">
+                            <input id="num" class='checkbox' type="checkbox" checked> Number
+                        </label> <br>
+
+                        <label for="sym" title="Include symbols in password">
+                            <input id="sym" class='checkbox' type="checkbox" checked> Symbol
+                        </label> <br>
+                    </div>
                 </div>
-            </div>
+            </fieldset>
         </div>
     </main>
-    <button onclick='make_copy()'>Copy Password </button>
-    <button class="copied">Copied</button>
+    <button onclick='make_copy()' title="copy displayed password">Copy Password </button>
+    <div class="theme-changer" onclick='change_theme()' title="theme">
+        <span>Click to change theme</span>
+    </div>
 </body>
 
 </html>
