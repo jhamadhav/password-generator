@@ -77,7 +77,7 @@ legend {
 }
 
 .theme-changer span {
-    width: 300px;
+    width: 200px;
     position: absolute;
     margin-left: 44px;
     margin-top: 6px;
@@ -397,7 +397,7 @@ input[type='number']:focus {
 
 .order,
 .type {
-    font-size: small;
+    font-size: medium;
 }
 
 .order label {
@@ -610,11 +610,6 @@ button:active {
 @media only screen and (min-width: 760px) {
     .main1 {
         flex-direction: row;
-    }
-
-    .order,
-    .type {
-        font-size: small;
     }
 
     section,
