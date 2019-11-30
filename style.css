@@ -516,8 +516,8 @@ input[type="checkbox"]:checked:before {
 
 /* Style the indicator (dot/circle) */
 .container .checkmark:after {
-    top: 6px;
-    left: 6px;
+    top: 5.5px;
+    left: 5.5px;
     width: 14px;
     height: 14px;
     border-radius: 50%;
