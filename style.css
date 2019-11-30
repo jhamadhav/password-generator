@@ -57,15 +57,16 @@ legend {
 }
 
 .theme-changer {
-    position: absolute;
+    position: relative;
     display: block;
     z-index: 3;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    left: 10px;
+    left: 20px;
     bottom: -150px;
     margin-bottom: 10px;
+    margin-top: -20px;
     cursor: pointer;
     transition-duration: 300ms;
     background: #f12711;
@@ -78,8 +79,8 @@ legend {
 .theme-changer span {
     width: 300px;
     position: absolute;
-    margin-left: 48px;
-    margin-top: 4px;
+    margin-left: 44px;
+    margin-top: 6px;
 }
 
 .night {
@@ -117,12 +118,11 @@ legend {
 }
 
 h2 {
-    font-family: 'Aleo', serif;
     font-size: xx-large;
     color: var(--color);
     width: 100%;
     text-align: center;
-    font-weight: bold;
+    font-weight: lighter;
     letter-spacing: 2px;
     margin: 20px auto 26px auto;
 }
@@ -307,6 +307,18 @@ h3 {
     color: var(--color);
     cursor: pointer;
     margin: 6px;
+}
+
+.box1,
+.box2 {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 8px;
 }
 
 .boxes:active {
@@ -530,7 +542,7 @@ button {
     left: 0;
     right: 0;
     margin: auto;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 
