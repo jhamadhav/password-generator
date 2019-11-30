@@ -397,7 +397,7 @@ input[type='number']:focus {
 
 .order,
 .type {
-    font-size: xx-small;
+    font-size: small;
 }
 
 .order label {
