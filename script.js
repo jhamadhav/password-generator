@@ -67,7 +67,9 @@ function generate() {
         let ran = Math.floor(Math.random() * (main_set.length - 1));
         password += main_set[ran];
     }
-
+    if (password.includes('[A-Z]\g')) {
+        console.log(true);
+    }
     document.getElementsByClassName('viewer')[0].value = password;
 
 }

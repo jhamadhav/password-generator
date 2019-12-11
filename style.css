@@ -156,7 +156,7 @@ main {
     justify-content: start;
     flex-direction: column;
     width: 92%;
-    max-width: 800px;
+    max-width: 900px;
     font-size: 28px;
     padding: 20px 16px;
     border-radius: 5px;
@@ -290,7 +290,7 @@ h3 {
     flex-grow: 1;
     flex-shrink: 1;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     margin-top: 16px;
@@ -305,7 +305,7 @@ h3 {
     background: var(--theme);
     color: var(--color);
     cursor: pointer;
-    margin: 6px;
+    margin: 5px;
 }
 
 .box1,
@@ -317,26 +317,35 @@ h3 {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 }
 
 .boxes:active {
     transform: scale(.88);
 }
 
+input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
 input[type='number'] {
-    padding: 8px 2px 8px 2px;
+    padding: 8px;
     border-radius: 5px;
-    font-size: 26px;
+    font-size: large;
+    width: 70px;
     text-align: center;
     border: none;
     outline: none;
-    margin: 10px;
+    margin: 8px;
+    margin-right: 18px;
     border: 1px solid #c8c8c8;
     box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, .25);
     cursor: pointer;
     background: var(--theme);
     color: var(--color);
+    font-family: 'Montserrat', sans-serif;
 }
 
 input[type='number']:focus {
@@ -396,7 +405,7 @@ input[type='number']:focus {
 
 .order,
 .type {
-    font-size: medium;
+    font-size: 0.8em;
 }
 
 .order label {
@@ -423,7 +432,7 @@ input[type='number']:focus {
 input[type="checkbox"] {
     position: relative;
     height: 26px;
-    width: 48px;
+    width: 46px;
     background-color: #c6c6c6;
     -webkit-appearance: none;
     outline: none;
@@ -432,7 +441,7 @@ input[type="checkbox"] {
     transition: .6s;
     transform: translateY(16px);
     margin: 10px;
-    margin-right: 16px;
+    margin-right: 8px;
     cursor: pointer;
 }
 
@@ -456,7 +465,7 @@ input[type="checkbox"]:before {
 
 
 input[type="checkbox"]:checked:before {
-    left: 26px;
+    left: 22px;
 }
 
 /* The container */
@@ -467,8 +476,8 @@ input[type="checkbox"]:checked:before {
 .container {
     display: block;
     position: relative;
-    padding-left: 35px;
-    margin-left: 10px;
+    padding-left: 34px;
+    /* margin-left: 10px; */
     margin-bottom: 12px;
     cursor: pointer;
     -webkit-user-select: none;
@@ -619,10 +628,14 @@ button:active {
     .theme-changer {
         position: absolute;
         left: 16px;
-        top: 16px;
+        top: 26px;
     }
 
     .theme-changer span {
         display: none;
+    }
+
+    input {
+        font-size: 1em;
     }
 }
