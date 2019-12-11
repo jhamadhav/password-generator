@@ -45,35 +45,21 @@ window.onload = function () {
 }
 
 function generate() {
-
-    //making the main set
-    main_set = '';
     password = '';
-    if (checkbox[0].checked) {
-        main_set += alpha;
-    }
-    if (checkbox[1].checked) {
-        main_set += lo;
-    }
-    if (checkbox[2].checked) {
-        main_set += num_list;
-    }
-    if (checkbox[3].checked) {
-        main_set += sym_list;
-    }
     //to show strength
     strength_indicator();
-    for (let i = 0; i < strength; i++) {
-        let ran = Math.floor(Math.random() * (main_set.length - 1));
-        password += main_set[ran];
-    }
-    if (password.includes('[A-Z]\g')) {
-        console.log(true);
-    }
+    do {
+        if (checkbox[0].checked && password.length < strength) password += alpha[ran(0, alpha.length - 1)];
+        if (checkbox[1].checked && password.length < strength) password += lo[ran(0, lo.length - 1)];
+        if (checkbox[2].checked && password.length < strength) password += num_list[ran(0, num_list.length - 1)];
+        if (checkbox[3].checked && password.length < strength) password += sym_list[ran(0, sym_list.length - 1)];
+    } while (password.length < strength);
+
     document.getElementsByClassName('viewer')[0].value = password;
-
 }
-
+const ran = (min = 0, max = 1) => {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 function strength_indicator() {
     let a = document.getElementsByClassName('strength')[0];
     let b = document.getElementsByClassName('strength-indicator')[0];
